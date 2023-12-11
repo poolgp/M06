@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creació personatge RPG</title>
+
+    <script>
+        function guardarPersonatge() {
+            // Obtenim les dades del formulari
+            let formulari = document.getElementById("idForm");
+            let nom = formulari.nomPersonatge.value;
+            let classe = formulari.classePersonatge.value;
+            let raza = formulari.razaPersonatge.value;
+
+            // Guarda les dades a Local Storage
+            localStorage.setItem('nomPersonatge', nom);
+            localStorage.setItem('classePersonatge', classe);
+            localStorage.setItem('razaPersonatge', raza);
+
+            alert('Personatge guardat amb èxit!');
+        }
+
+        function cargarPersonatge() {
+            // Recupera les dades des de Local Storage
+            var nom = localStorage.getItem('nomPersonatge');
+            var classe = localStorage.getItem('classePersonatge');
+            var raza = localStorage.getItem('razaPersonatge');
+
+            // Mostra les dades recuperades
+            if (nom && classe && raza) {
+                alert('Nom: ' + nom + '\nClasse: ' + classe + '\nRaça: ' + raza);
+            } else {
+                alert('No hi ha cap personatge guardat.');
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Creació d’un personatge RPG</h1>
+
+    <form id="idForm">
+        <label for="nomPersonatge">Nom del personatge:</label>
+        <input type="text" id="nomPersonatge" required>
+
+        <label for="classePersonatge">Classe del personatge:</label>
+        <input type="text" id="classePersonatge" required>
+
+        <label for="razaPersonatge">Raça del personatge:</label>
+        <input type="text" id="razaPersonatge" required>
+
+        <button type="button" onclick="guardarPersonatge()">Guardar personatge</button>
+    </form>
+
+    <button type="button" onclick="cargarPersonatge()">Recuperar personatge</button>
+
+</body>
+
+</html>

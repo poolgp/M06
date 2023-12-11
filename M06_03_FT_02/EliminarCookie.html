@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enmagatzema i Recupera Cookie</title>
+
+    <script>
+        //funció per emmagatzemar una cookie
+        function EnmagatzemaCookie() {
+            //obtenim el formulari pel seu id
+            let formulari = document.getElementById("idForm");
+            //obtenim el nom i valor de la cookie des del formulari
+            let nomCookie = formulari.nomCookie.value;
+            let valorCookie = formulari.valorCookie.value;
+
+            //comprovem si els camps del formulari estan buits
+            if (nomCookie.trim() === "" || valorCookie.trim() === "") {
+                //si es compleix alguna condició, mostrem el missatge d'alerta
+                alert("Si us plau, introdueix un nom i un valor per a la cookie.");
+                return;
+            }
+
+            //construim una cadena de la cookie
+            let cookieString = nomCookie + "=" + valorCookie;
+
+            //emmagatzem la cookie mitjançant l'atribut formulari.cookie
+            document.cookie = cookieString;
+
+            //mostrem un missatge d'alerta amb la informació de la cookie emmagatzemada
+            alert("Cookie enmagatzemada amb èxit:\n" + cookieString);
+        }
+
+        //funció per recuperar una cookie emmagatzemada
+        function RecuperaCookie() {
+            //obtenim el formulari de recuperació pel seu id
+            let formulariRecuperar = document.getElementById("idFormRecuperar");
+            //obtenim el nom de la cookie a recuperar del formulari
+            let nomCookieRecuperar = formulariRecuperar.nomCookieRecuperar.value;
+
+            //comprovem si el camp del formulari esta buit
+            if (nomCookieRecuperar.trim() === "") {
+                //si es compleix la condició, mostrem el missatge d'alerta
+                alert("Si us plau, introdueix un nom de cookie per recuperar.");
+                return;
+            }
+
+            //obtenim totes les cookies emmagatzemades en l'atribut document.cookie
+            let cookies = document.cookie.split(";");
+
+            //busquem a través de les cookies per trobar la que coincideix amb el nom especificat
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i].trim();
+
+                //comprobem si la cookie te el nom especific
+                if (cookie.startsWith(nomCookieRecuperar + "=")) {
+                    //obtenim el valor de la cookie
+                    let valor = cookie.substring(nomCookieRecuperar.length + 1);
+                    //mostrm un missatge d'alerta amb la informacio de la cookie recuperada
+                    alert(
+                        "Cookie trobada:\nNom: " +
+                        nomCookieRecuperar +
+                        "\nValor: " +
+                        valor
+                    );
+                    return;
+                }
+            }
+
+            //mostrem un missatge d¡alerta en cas de no trobar cap cookie amb el nom especific
+            alert("No s'ha trobat cap cookie amb el nom especificat.");
+        }
+
+        //funció per eliminar una cookie emmagatzemada
+        function EliminarCookie() {
+            //obtenim el formulari de eliminació pel seu id
+            let formulariEliminar = document.getElementById("idFormEliminar");
+
+            //obtenim el nom de la cookie a eliminar del formulari
+            let nomCookieEliminar = formulariEliminar.nomCookieEliminar.value;
+
+            //comprovem si el camp del formulari esta buit
+            if (nomCookieEliminar.trim() === "") {
+                //si es compleix la condició, mostrem el missatge d'alerta
+                alert("Si us plau, introdueix un nom de cookie per eliminar.");
+                return;
+            }
+
+            //obtenim totes les cookies emmagatzemades en l'atribut document.cookie
+            let cookies = document.cookie.split(";");
+
+            //busquem a través de les cookies per trobar la que coincideix amb el nom especificat
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i].trim();
+
+                //comprobem si la cookie te el nom especific
+                if (cookie.startsWith(nomCookieEliminar + "=")) {
+
+                    //trobada la cookie a eliminar, obtenim el nom de la cookie fins el '='
+                    // Trobada la cookie a eliminar
+                    // Obtenim el nom de la cookie (fins al '=')
+                    let nomCookie = cookie.split("=")[0];
+
+                    // Caduquem la cookie establint una data passada
+                    document.cookie = nomCookie + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+                    // Mostrem un missatge d'alerta informant que la cookie ha estat eliminada
+                    alert("Cookie eliminada amb èxit:\nNom: " + nomCookieEliminar);
+                    return;
+                }
+            }
+
+            // Si no s'ha trobat cap cookie amb el nom especificat
+            alert("No s'ha trobat cap cookie amb el nom especificat.");
+        }
+
+    </script>
+</head>
+
+<body>
+    <h2>Formulari per a la Cookie</h2>
+    <form id="idForm">
+        <label for="nomCookie">Nom de la Cookie:</label>
+        <input type="text" id="nomCookie" name="nomCookie" required /><br />
+
+        <label for="valorCookie">Valor de la Cookie:</label>
+        <input type="text" id="valorCookie" name="valorCookie" required /><br />
+
+        <button type="button" onclick="EnmagatzemaCookie()">
+            Enmagatzema Cookie
+        </button>
+    </form>
+
+    <br />
+    <hr />
+    <br />
+
+    <h2>Formulari per a Recuperar la Cookie</h2>
+    <form id="idFormRecuperar">
+        <label for="nomCookieRecuperar">Nom de la Cookie a Recuperar:</label>
+        <input type="text" id="nomCookieRecuperar" name="nomCookieRecuperar" required /><br />
+
+        <button type="button" onclick="RecuperaCookie()">Recupera Cookie</button>
+    </form>
+
+    <br />
+    <hr />
+    <br />
+
+    <h2>Formulari per a Eliminar la Cookie</h2>
+    <form id="idFormEliminar">
+        <label for="nomCookieEliminar">Nom de la Cookie a Eliminar:</label>
+        <input type="text" id="nomCookieEliminar" name="nomCookieEliminar" required /><br />
+
+        <button type="button" onclick="EliminarCookie()">Eliminar Cookie</button>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="validacio.js"></script>
+</head>
+<body>
+    <form id="myForm">
+        <label for="nom">Nom:</label>
+        <input type="text" id="nom" name="nom" required>
+        <br>
+
+        <label for="edat">Edat (entre 1 i 100):</label>
+        <input type="number" id="edat" name="edat" min="1" max="100" required>
+        <br>
+
+        <label for="sexe">Sexe:</label>
+        <input type="radio" id="home" name="sexe" value="home"> Home
+        <input type="radio" id="dona" name="sexe" value="dona"> Dona
+        <br>
+
+        <label for="accepta">Accepta els termes:</label>
+        <input type="checkbox" id="accepta" name="accepta" required>
+        <br>
+
+        <input type="button" value="Enviar" onclick="calcula();">
+    </form>
+</body>
+</html>

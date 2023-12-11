@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registre d'assistents</title>
+    <script>
+        // Funció per afegir un nom a la llista de cookies
+        function afegirAssistent() {
+            // Obté el valor del camp de text amb l'id "nomAssistent"
+            let nomAssistent = document.getElementById("nomAssistent").value;
+
+            // Comprova si el nom no és buit abans d'afegir-lo a la llista
+            if (nomAssistent.trim() !== "") {
+                // Obté la llista de noms emmagatzemats a la cookie (si existeix)
+                let llistaNoms = document.cookie.replace(/(?:(?:^|.*;\s*)llistaNoms\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+
+                // Converteix la llista de noms a un array
+                let nomsArray = llistaNoms ? llistaNoms.split(",") : [];
+
+                // Afegix el nou nom a l'array
+                nomsArray.push(nomAssistent);
+
+                // Converteix l'array de noms a una cadena separada per comes i emmagatzema a la cookie
+                document.cookie = "llistaNoms=" + nomsArray.join(", ");
+
+                // Actualitza la visualització de la llista
+                mostrarLlista();
+            } else {
+                alert("Si us plau, introdueix un nom d'assistents vàlid.");
+            }
+        }
+
+        // Funció per mostrar la llista actual d'assistents
+        function mostrarLlista() {
+            // Obté l'element amb l'id "llistaAssistents" per mostrar la llista
+            let llistaAssistents = document.getElementById("llistaAssistents");
+
+            // Obté la llista de noms emmagatzemats a la cookie (si existeix)
+            let llistaNoms = document.cookie.replace(/(?:(?:^|.*;\s*)llistaNoms\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+
+            // Converteix la llista de noms a un array
+            let nomsArray = llistaNoms ? llistaNoms.split(",") : [];
+
+            // Construeix la llista com una cadena HTML
+            let llistaHTML = "<ul>";
+            for (let i = 0; i < nomsArray.length; i++) {
+                llistaHTML += "<li>" + nomsArray[i] + "</li>";
+            }
+            llistaHTML += "</ul>";
+
+            // Assigna la cadena HTML a l'element per mostrar la llista
+            llistaAssistents.innerHTML = llistaHTML;
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Registre d'assistents</h1>
+    <label for="nomAssistent">Nom de l'assistent:</label>
+    <input type="text" id="nomAssistent" /><br>
+    <label for="anyNaixement">Any de Naixement:</label>
+    <input type="text" id="anyNaixement" /><br>
+    <label for="localitatProcedencia">Localitat de Procedència:</label>
+    <input type="text" id="localitatProcedencia" /><br>
+    <button onclick="afegirAssistent()">Afegir</button>
+
+    <h2>Llista d'assistents:</h2>
+    <div id="llistaAssistents"></div>
+
+    <!-- Aixo serveix per mostrar sempre la llista, igualment que es recarregui la pagina,
+        es segueix mostrant el contingut de la llista -->
+    <script>
+        mostrarLlista();
+    </script>
+</body>
+
+</html>
+

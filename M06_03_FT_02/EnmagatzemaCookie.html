@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enmagatzema Cookie</title>
+
+    <script>
+        //funció per emmagatzemar una cookie
+        function EnmagatzemaCookie() {
+            //obtenim el formulari pel seu id
+            let formulari = document.getElementById('idForm');
+            //obtenim el nom i valor de la cookie des del formulari
+            let nomCookie = formulari.nomCookie.value;
+            let valorCookie = formulari.valorCookie.value;
+
+            //comprovem si els camps del formulari estan buits
+            if (nomCookie.trim() === '' || valorCookie.trim() === '') {
+                //si es compleix alguna condició, mostrem el missatge d'alerta
+                alert('Si us plau, introdueix un nom i un valor per a la cookie.');
+                return;
+            }
+
+            //construim una cadena de la cookie
+            let cookieString = nomCookie + '=' + valorCookie;
+
+            //emmagatzem la cookie mitjançant l'atribut formulari.cookie
+            formulari.cookie = cookieString;
+
+            //mostrem un missatge d'alerta amb la informació de la cookie emmagatzemada
+            alert('Cookie enmagatzemada amb èxit:\n' + cookieString);
+        }
+    </script>
+</head>
+
+<body>
+
+    <h2>Formulari per a la Cookie</h2>
+    <form id="idForm">
+        <label for="nomCookie">Nom de la Cookie:</label>
+        <input type="text" id="nomCookie" name="nomCookie" required><br>
+
+        <label for="valorCookie">Valor de la Cookie:</label>
+        <input type="text" id="valorCookie" name="valorCookie" required><br>
+
+        <button type="button" onclick="EnmagatzemaCookie()">Enmagatzema Cookie</button>
+    </form>
+
+</body>
+
+</html>
