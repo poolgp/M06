@@ -4,9 +4,35 @@ body {
 }
 
 .titulo {
+    display: flex;
     text-align: center;
+    justify-content: center;
     height: 50px;
     width: 100%;
+}
+
+.usuario {
+    display: flex;
+}
+
+.user {
+    height: 40px;
+    width: auto;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#nameUser {
+    height: 40px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .juego {
@@ -20,6 +46,31 @@ body {
     margin: 20px;
     background-color: rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(1px);
+}
+
+.tematica {
+    display: flex;
+    justify-content: end;
+}
+
+.temaTematica {
+    height: 40px;
+    width: auto;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#tema {
+    height: 40px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .letras {
