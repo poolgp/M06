@@ -13,30 +13,6 @@ body {
     width: 100%;
 }
 
-.usuario {
-    display: flex;
-}
-
-.user {
-    height: 40px;
-    width: auto;
-    display: flex;
-    align-items: center;
-    margin: 5px;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-#nameUser {
-    height: 40px;
-    width: 200px;
-    display: flex;
-    align-items: center;
-    margin: 5px;
-    font-size: 20px;
-    font-weight: bold;
-}
-
 .juego {
     height: 800px;
     width: 100%;
@@ -52,7 +28,27 @@ body {
 
 .tematica {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
+}
+
+.nameUser {
+    height: 40px;
+    width: auto;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#name {
+    height: 40px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .temaTematica {

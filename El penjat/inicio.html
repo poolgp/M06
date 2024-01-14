@@ -15,24 +15,31 @@
         <h1>El Penjat</h1>
     </div>
 
-    <!-- <div class="titulo">
-        <h1>El Penjat</h1>
-        <div class="usuario">
-            <span class="user">Usuari: </span>
-            <span id="nameUser">Nom Usuari</span>
-        </div>
-    </div> -->
-
     <div class="juego">
         <div class="penjat">
             <div class="tematica">
+                <span class="nameUser">Nom d'usuari: </span>
+                <span id="name">Nom</span>
                 <span class="temaTematica">Temàtica: </span>
                 <span id="tema">Tema</span>
+            </div>
+
+            <div class="imgPenjat">
+                <
             </div>
         </div>
 
         <div class="letras">
-            <div class="abc1">
+            <form id="idForm">
+                <div class="userContainer">
+                    <label for="inputNameUser">Nom d'Usuari: </label>
+                    <input type="text" id="inputNameUser" name="inputNameUser" placeholder="Introdueix el teu nom">
+                    </br>
+                    <button onclick="startGame()">Jugar</button>
+                </div>
+            </form>
+
+            <!-- <div class="abc1">
                 <div class="letra" id="a">A</div>
                 <div class="letra">B</div>
                 <div class="letra">C</div>
@@ -69,7 +76,7 @@
                 <div class="letra">X</div>
                 <div class="letra">Y</div>
                 <div class="letra">Z</div>
-            </div>
+            </div> -->
         </div>
 
     </div>

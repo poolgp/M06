@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penjat</title>
+
+    <link rel="stylesheet" href="penjat.css">
+</head>
+<body>
+    <body>
+        <div id="game-container">
+            <div id="username-container">
+                <label for="username">Nom d'usuari:</label>
+                <input type="text" id="username" placeholder="Introdueix el teu nom">
+                <button onclick="startGame()">Començar Joc</button>
+            </div>
+            <div id="word-container"></div>
+            <div id="hangman-container"></div>
+            <div id="letters-container"></div>
+            <div id="info-container"></div>
+            <button id="play-again" onclick="playAgain()">Tornar a jugar</button>
+        </div>
+        <script src="penjat.js"></script>
+    </body>
+</body>
+</html>

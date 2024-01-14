@@ -1,3 +1,8 @@
+function startGame() {
+  let formulari = document.getElementById("idForm");
+  let nameUser = formulari.inputNameUser.value;
+}
+
 // Nom d'un país
 
 // Animals del món
@@ -89,30 +94,3 @@ function comprova(lletraClic){
 document.addEventListener("DOMContentLoaded", function () {
     mostrarAlert();
 });
-
-function mostrarAlert() {
-
-
-
-(async () => {
-    const ipAPI = "//api.ipify.org?format=json";
-    const response = await fetch(ipAPI);
-    const data = await response.json();
-    const inputValue = data.ip;
-    const { value: userNAme } = await Swal.fire({
-      title: "El teu nom d'usuari",
-      input: "text",
-    //   inputLabel: "Your IP address",
-      inputValue,
-      showCancelButton: true,
-      inputValidator: (value) => {
-        if (!value) {
-          return "You need to write something!";
-        }
-      }
-    });
-    if (userNAme) {
-      Swal.fire(`Your IP address is ${userNAme}`);
-    }
-  })()
-}
