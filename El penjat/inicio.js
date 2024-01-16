@@ -4,8 +4,8 @@ document.getElementById("idForm").addEventListener("submit", function startGame(
 
   if (userName.trim() === '') {
     alert('Si us plau, introdueix un nom');
-     return;
-  }else{
+    return;
+  } else {
     let nameElement = document.getElementById("name");
     nameElement.textContent = userName;
 
@@ -15,14 +15,14 @@ document.getElementById("idForm").addEventListener("submit", function startGame(
 });
 
 function ocultar() {
-  document.getElementById('idForm').style.display='none';
+  document.getElementById('idForm').style.display = 'none';
 
-  document.getElementById('P1').style.display='none';
-  document.getElementById('P2').style.display='none';
-  document.getElementById('P3').style.display='none';
-  document.getElementById('P4').style.display='none';
-  document.getElementById('P5').style.display='none';
-  document.getElementById('P6').style.display='none';
+  document.getElementById('P1').style.display = 'none';
+  document.getElementById('P2').style.display = 'none';
+  document.getElementById('P3').style.display = 'none';
+  document.getElementById('P4').style.display = 'none';
+  document.getElementById('P5').style.display = 'none';
+  document.getElementById('P6').style.display = 'none';
 }
 
 function mostrarAbc() {
