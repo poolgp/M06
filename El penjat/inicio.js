@@ -1,38 +1,41 @@
-function startGame() {
-  let formulari = document.getElementById("idForm");
-  let nomUser = formulari.inputNameUser.value;
+document.getElementById("idForm").addEventListener("submit", function startGame(event) {
+  event.preventDefault();
+  let userName = document.getElementById("inputNameUser").value;
 
-  if (nomUser.trim() === '') {
+  if (userName.trim() === '') {
     alert('Si us plau, introdueix un nom');
-    return;
-  } else {
-    localStorage.setItem('inputNameUser', nomUser);
+     return;
+  }else{
+    let nameElement = document.getElementById("name");
+    nameElement.textContent = userName;
+
+    ocultar();
+    // mostrarAbc();
   }
-
-  let nameElement = document.getElementById("name");
-  let storedName = localStorage.getItem('inputNameUser');
-  nameElement.textContent = storedName;
-
-  ocultar();
-  mostrarAbc();
-}
+});
 
 function ocultar() {
-  document.getElementById('idForm').style.display = 'none';
+  document.getElementById('idForm').style.display='none';
 
-  document.getElementById('P1').style.display = 'none';
-  document.getElementById('P2').style.display = 'none';
-  document.getElementById('P3').style.display = 'none';
-  document.getElementById('P4').style.display = 'none';
-  document.getElementById('P5').style.display = 'none';
-  document.getElementById('P6').style.display = 'none';
+  document.getElementById('P1').style.display='none';
+  document.getElementById('P2').style.display='none';
+  document.getElementById('P3').style.display='none';
+  document.getElementById('P4').style.display='none';
+  document.getElementById('P5').style.display='none';
+  document.getElementById('P6').style.display='none';
 }
 
 function mostrarAbc() {
   const abc = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+
+  const caracteresSeparados = abc.split('');
+
+  for (let i = 0; i < array.length; i++) {
+    const etiquetaA = '<a href="#" id="caracter-${i}">${caracteresSeparados[i]}</a>';
+
+    console.log(etiquetaA);
+  }
 }
-
-
 
 // let puntuacion = parseInt(document.getElementById("score").textContent);
 // document.getElementById("score").textContent = puntuacion + 5;
