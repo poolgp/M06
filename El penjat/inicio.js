@@ -1,10 +1,17 @@
-function startGame(event) {
-  event.preventDefault();
+function startGame() {
   let formulari = document.getElementById("idForm");
-  let inputNameUser = formulari.inputNameUser.value;
+  let nomUser = formulari.inputNameUser.value;
+
+  if (nomUser.trim() === '') {
+    alert('Si us plau, introdueix un nom');
+    return;
+  } else {
+    localStorage.setItem('inputNameUser', nomUser);
+  }
 
   let nameElement = document.getElementById("name");
-  nameElement.textContent = inputNameUser;
+  let storedName = localStorage.getItem('inputNameUser');
+  nameElement.textContent = storedName;
 
   ocultar();
   mostrarAbc();
