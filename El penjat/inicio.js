@@ -10,7 +10,7 @@ document.getElementById("idForm").addEventListener("submit", function startGame(
     nameElement.textContent = userName;
 
     ocultar();
-    // mostrarAbc();
+    mostrarAbc();
   }
 });
 
@@ -27,14 +27,37 @@ function ocultar() {
 
 function mostrarAbc() {
   const abc = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
-
   const caracteresSeparados = abc.split('');
 
-  for (let i = 0; i < array.length; i++) {
-    const etiquetaA = '<a href="#" id="caracter-${i}">${caracteresSeparados[i]}</a>';
+  const container = document.getElementById('containerLletras');
 
-    console.log(etiquetaA);
-  }
+  const abc1 = document.createElement('div');
+  abc1.className = 'abc1';
+
+  const abc2 = document.createElement('div');
+  abc2.className = 'abc2';
+
+  const abc3 = document.createElement('div');
+  abc3.className = 'abc3';
+
+  caracteresSeparados.forEach((caracter, i) => {
+    const aElement = document.createElement('a');
+    aElement.href = '#';
+    aElement.id = 'caracter-${i}';
+    aElement.textContent = caracter;
+
+    if (i < 10) {
+      abc1.appendChild(aElement);
+    } else if (i < 19) {
+      abc2.appendChild(aElement);
+    } else {
+      abc3.appendChild(aElement);
+    }
+  });
+
+  container.appendChild(abc1);
+  container.appendChild(abc2);
+  container.appendChild(abc3);
 }
 
 // let puntuacion = parseInt(document.getElementById("score").textContent);
