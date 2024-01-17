@@ -1,3 +1,42 @@
+let palabras = [
+  {
+    nombre: "Espanya",
+    imagen: "ruta/a/la/imagen1.jpg",
+    descripcion: "Descripción palabra 1.",
+    tematica: "Nom d'un país",
+  },
+  {
+    nombre: "Franca",
+    imagen: "ruta/a/la/imagen2.jpg",
+    descripcion: "Descripción palabra 2.",
+    tematica: "Nom d'un país",
+  },
+  {
+    nombre: "Lleo",
+    imagen: "ruta/a/la/imagen3.jpg",
+    descripcion: "Descripción palabra 3.",
+    tematica: "Animals del món",
+  },
+  {
+    nombre: "Koala",
+    imagen: "ruta/a/la/imagen4.jpg",
+    descripcion: "Descripción palabra 4.",
+    tematica: "Animals del món",
+  },
+  {
+    nombre: "Cotxe",
+    imagen: "ruta/a/la/imagen5.jpg",
+    descripcion: "Descripción palabra 5.",
+    tematica: "Vehicles de transport",
+  },
+  {
+    nombre: "Avio",
+    imagen: "ruta/a/la/imagen6.jpg",
+    descripcion: "Descripción palabra 6.",
+    tematica: "Vehicles de transport",
+  }
+];
+
 document.getElementById("idForm").addEventListener("submit", function startGame(event) {
   event.preventDefault();
   let userName = document.getElementById("inputNameUser").value;
@@ -26,7 +65,7 @@ function ocultar() {
 }
 
 function mostrarAbc() {
-  const abc = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+  const abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   const caracteresSeparados = abc.split('');
 
   const container = document.getElementById('containerLletras');
@@ -60,8 +99,7 @@ function mostrarAbc() {
   container.appendChild(abc3);
 }
 
-// let puntuacion = parseInt(document.getElementById("score").textContent);
-// document.getElementById("score").textContent = puntuacion + 5;
+
 
 // Nom d'un país
 
