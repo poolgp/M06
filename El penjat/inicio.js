@@ -113,6 +113,20 @@ function mostrarPalabra() {
   }
 }
 
+/*
+function comprovarLletra();
+
+function pipntarLLetra();
+
+function Fin del Joc();
+
+*/
+
+function finJoc() {
+  //mostrar info de la paraula
+  //mostrar boto tornar a jugar
+  //mostrar boton sortir (borra el cache i/o recarega la pagina)
+}
 
 // Actualizar el contador de errores
 // let numeroPreguntaActual = indice + 1;
@@ -122,8 +136,6 @@ function mostrarPalabra() {
 
 //contador (opcional)
 
-
-//const myArray = text.split(""); separar paraula en array
 
 
 // function bloquejarLletra(){
@@ -173,12 +185,8 @@ function mostrarPalabra() {
 //         //pintar vermell
 //         //background-color: red;
 //         //mostrar imatge error (penjat.jpg)
-//         if(error>=9){
+//         if(error>=6){
 //             findeljoc("lose");
 //         }
 //     }
 // }
-
-// document.addEventListener("DOMContentLoaded", function () {
-//     mostrarAlert();
-// });
