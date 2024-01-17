@@ -50,6 +50,7 @@ document.getElementById("idForm").addEventListener("submit", function startGame(
 
     ocultar();
     mostrarAbc();
+    mostrarPalabra();
   }
 });
 
@@ -99,6 +100,18 @@ function mostrarAbc() {
   container.appendChild(abc3);
 }
 
+function mostrarPalabra() {
+  const palabraSeleccionada = palabras[Math.floor(Math.random() * palabras.length)].nombre;
+  const palabraDiv = document.getElementById('palabra');
+
+  palabraDiv.innerHTML = '';
+
+  for (let i = 0; i < palabraSeleccionada.length; i++) {
+    palabraDiv.innerHTML += '_ ';
+  }
+}
+
+// Resto de tu código...
 
 
 // Nom d'un país
@@ -120,21 +133,6 @@ function mostrarAbc() {
 
 //const myArray = text.split(""); separar paraula en array
 
-// const matriuTema = [
-//   [1, 'nomPais'],
-//   [2, 'animals'],
-//   [3, 'transport']
-// ];
-
-// // const matriuParaules = [
-// //   [1, 'Espanya', 'Espanya és un país d'Europa amb moltes coses divertides per descobrir. La capital és Madrid. Parlen espanyol i mengen menjars deliciosos com la paella i els xurros. Hi ha festes famoses com la Tomatina. Pots veure llocs increïbles com la Sagrada Família a Barcelona i l'Alhambra a Granada. És un país ple de coses interessants!', '../img/espanya.jpg', 1],
-// // ]
-
-// let matriuParaules ={
-//   idParaula: 1,
-//   nomParaula:
-
-// }
 
 // function bloquejarLletra(){
 //     document.getElementById(lletraCurrent);

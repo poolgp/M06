@@ -1,7 +1,6 @@
 body {
     background-color: #33ACFF;
     margin: 0;
-
     font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -71,14 +70,16 @@ body {
     font-weight: bold;
 }
 
-.imgPenjat{
+.imgPenjat {
     height: 450px;
     width: 400px;
     border: solid black 1px;
     margin: 15px 50px 15px 50px;
 }
 
-.col1,.col2,.col3{
+.col1,
+.col2,
+.col3 {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -87,11 +88,20 @@ body {
     background-color: #fff;
 }
 
-.img1,.img2,.img3,.img4,.img5,.img6 {
+.img1,
+.img2,
+.img3,
+.img4,
+.img5,
+.img6 {
     width: 150px;
     height: 150px;
     background-color: #ffff;
-  }
+}
+
+.palabra {
+    font-size: 30px;
+}
 
 .letras {
     height: 240px;
