@@ -37,21 +37,20 @@ let palabras = [
   }
 ];
 
-document.getElementById("idForm").addEventListener("submit", function startGame(event) {
+document.getElementById('idForm').addEventListener('submit', function startGame(event) {
   event.preventDefault();
-  let userName = document.getElementById("inputNameUser").value;
+  let userName = document.getElementById('inputNameUser').value;
 
   if (userName.trim() === '') {
     alert('Si us plau, introdueix un nom');
     return;
   } else {
-    let nameElement = document.getElementById("name");
+    let nameElement = document.getElementById('name');
     nameElement.textContent = userName;
-
-    ocultar();
-    mostrarAbc();
-    mostrarPalabra();
   }
+  ocultar();
+  mostrarAbc();
+  mostrarPalabra();
 });
 
 function ocultar() {
@@ -66,7 +65,7 @@ function ocultar() {
 }
 
 function mostrarAbc() {
-  const abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   const caracteresSeparados = abc.split('');
 
   const container = document.getElementById('containerLletras');
@@ -101,32 +100,25 @@ function mostrarAbc() {
 }
 
 function mostrarPalabra() {
-  const palabraSeleccionada = palabras[Math.floor(Math.random() * palabras.length)].nombre;
-  const palabraDiv = document.getElementById('palabra');
+  const palabraSeleccionada = palabras[Math.floor(Math.random() * palabras.length)];
 
+  let temaElement = document.getElementById('tema');
+  temaElement.textContent = palabraSeleccionada.tematica;
+
+  const palabraDiv = document.getElementById('palabra');
   palabraDiv.innerHTML = '';
 
-  for (let i = 0; i < palabraSeleccionada.length; i++) {
+  for (let i = 0; i < palabraSeleccionada.nombre.length; i++) {
     palabraDiv.innerHTML += '_ ';
   }
 }
 
-// Resto de tu código...
 
+// Actualizar el contador de errores
+// let numeroPreguntaActual = indice + 1;
+// let totalPreguntas = preguntas.length;
+// document.getElementById("questionCounter").textContent = `${numeroPreguntaActual}/${totalPreguntas}`;
 
-// Nom d'un país
-
-// Animals del món
-
-// vihicles de transport
-
-
-//crear matriu (1- nom pais, 2-animals, 3- vehicles)
-
-// matriu amb les paraule (img, nom, descripcio, tematica(1,2,3))
-
-// crear abecedari desde js ( createElement() )
-// o array amb totes les lletres i estat (vermell o verd)
 
 //contador (opcional)
 
