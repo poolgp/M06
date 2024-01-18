@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registre d'assistents</title>
+    <script>
+        // Funció per afegir un assistent a la llista de cookies
+        function afegirAssistent() {
+            // Obté els valors dels camps
+            let nomAssistent = document.getElementById("nomAssistent").value;
+            let anyNaixement = document.getElementById("anyNaixement").value;
+            let localitatProcedencia = document.getElementById("localitatProcedencia").value;
+
+            // Comprova si el nom no és buit abans d'afegir-lo a la llista
+            if (nomAssistent.trim() !== "") {
+                // Obté la llista d'assistents emmagatzemats a la cookie (si existeix)
+                let llistaAssistents = document.cookie.replace(/(?:(?:^|.*;\s*)llistaAssistents\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+
+                // Converteix la llista d'assistents a un array
+                let assistentsArray = llistaAssistents ? JSON.parse(llistaAssistents) : [];
+
+                // Afegix el nou assistent a l'array
+                assistentsArray.push({ nom: nomAssistent, anyNaixement: anyNaixement, localitatProcedencia: localitatProcedencia });
+
+                // Converteix l'array d'assistents a una cadena JSON i emmagatzema a la cookie
+                document.cookie = "llistaAssistents=" + JSON.stringify(assistentsArray);
+
+                // Actualitza la visualització de la llista
+                mostrarLlista();
+            } else {
+                alert("Si us plau, introdueix un nom d'assistents vàlid.");
+            }
+        }
+
+        // Funció per mostrar la llista actual d'assistents
+        function mostrarLlista() {
+            // Obté l'element amb l'id "llistaAssistents" per mostrar la llista
+            let llistaAssistents = document.getElementById("llistaAssistents");
+
+            // Obté la llista d'assistents emmagatzemats a la cookie (si existeix)
+            let llistaAssistentsCookie = document.cookie.replace(/(?:(?:^|.*;\s*)llistaAssistents\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+
+            // Converteix la llista d'assistents a un array
+            let assistentsArray = llistaAssistentsCookie ? JSON.parse(llistaAssistentsCookie) : [];
+
+            // Construeix la llista com una cadena HTML
+            let llistaHTML = "<ul>";
+            for (let i = 0; i < assistentsArray.length; i++) {
+                llistaHTML += "<li>" + "Nom: " + assistentsArray[i].nom + ", Any de Naixement: " + assistentsArray[i].anyNaixement + ", Localitat de Procedència: " + assistentsArray[i].localitatProcedencia + "</li>";
+            }
+            llistaHTML += "</ul>";
+
+            // Assigna la cadena HTML a l'element per mostrar la llista
+            llistaAssistents.innerHTML = llistaHTML;
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Registre d'assistents</h1>
+    <label for="nomAssistent">Nom de l'assistent:</label>
+    <input type="text" id="nomAssistent" /><br>
+    <label for="anyNaixement">Any de Naixement:</label>
+    <input type="text" id="anyNaixement" /><br>
+    <label for="localitatProcedencia">Localitat de Procedència:</label>
+    <input type="text" id="localitatProcedencia" /><br>
+    <button onclick="afegirAssistent()">Afegir</button>
+
+    <h2>Llista d'assistents:</h2>
+    <div id="llistaAssistents"></div>
+
+    <!-- Aixo serveix per mostrar sempre la llista, igualment que es recarregui la pagina,
+        es segueix mostrant el contingut de la llista -->
+    <script>
+        mostrarLlista();
+    </script>
+</body>
+
+</html>
