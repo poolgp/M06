@@ -45,6 +45,8 @@ document.getElementById('idForm').addEventListener('submit', function startGame(
     alert('Si us plau, introdueix un nom');
     return;
   } else {
+    localStorage.setItem('userName', userName);
+    
     let nameElement = document.getElementById('name');
     nameElement.textContent = userName;
   }
