@@ -45,14 +45,16 @@ document.getElementById('idForm').addEventListener('submit', function startGame(
     alert('Si us plau, introdueix un nom');
     return;
   } else {
-    localStorage.setItem('userName', userName);
-    
+    document.cookie = `userName=${userName}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
+    // localStorage.setItem('userName', userName);
+
     let nameElement = document.getElementById('name');
     nameElement.textContent = userName;
   }
   ocultar();
   mostrarAbc();
-  mostrarPalabra();
+  const palabraSeleccionada = mostrarPalabra();
+  comprovarLLetra(palabraSeleccionada);
 });
 
 function ocultar() {
@@ -84,8 +86,12 @@ function mostrarAbc() {
   caracteresSeparados.forEach((caracter, i) => {
     const aElement = document.createElement('a');
     aElement.href = '#';
-    aElement.id = 'caracter-${i}';
+    aElement.id = 'caracter-${caracter}';
     aElement.textContent = caracter;
+
+    aElement.addEventListener('click', function () {
+      comprovarLLetra(caracter, palabraSeleccionada);
+    });
 
     if (i < 10) {
       abc1.appendChild(aElement);
@@ -112,6 +118,35 @@ function mostrarPalabra() {
 
   for (let i = 0; i < palabraSeleccionada.nombre.length; i++) {
     palabraDiv.innerHTML += '_ ';
+  }
+
+  return palabraSeleccionada;
+}
+
+function comprovarLLetra(lletraClic, palabraSeleccionada) {
+  console.log('Lletra clicada: ${lletraClic}');
+
+  const palabraDiv = document.getElementById('palabra');
+  const palabraCompleta = palabraSeleccionada.nombre;
+
+  let palabraActualizada = '';
+  let letraEncontrada = false;
+
+  for (let i = 0; i < palabraCompleta.length; i++) {
+    if (palabraCompleta[i] === lletraClic) {
+      palabraActualizada += lletraClic + ' ';
+      letraEncontrada = true;
+    }else{
+      palabraActualizada += '_ ';
+    }
+  }
+
+  palabraDiv.textContent = palabraActualizada.trim();
+
+  if (!letraEncontrada) {
+    document.getElementById(`caracter-${lletraClic}`).removeEventListener('click', null);
+    document.getElementById(`caracter-${lletraClic}`).style.pointerEvents = 'none';
+    document.getElementById(`caracter-${lletraClic}`).style.cursor = 'default';
   }
 }
 
