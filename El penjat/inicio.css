@@ -126,17 +126,17 @@ body {
 
 .contadorErrores {
     margin-top: 5px;
-    display: flex;
     align-items: center;
+    flex-direction: column;
 }
 
 #score {
     margin: 5px 0px;
-}
+} 
 
-.total {
+ .total {
     margin: 5px 0px;
-}
+} 
 
 .imgFinal {
     height: 450px;
