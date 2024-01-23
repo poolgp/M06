@@ -37,25 +37,25 @@ let palabras = [
   }
 ];
 
-document.getElementById('idForm').addEventListener('submit', function startGame(event) {
+document.addEventListener('submit', function startGame(event){
   event.preventDefault();
+
+  validarNombre();
+  ocultar();
+  mostrarPalabra();
+})
+
+function validarNombre() {
   let userName = document.getElementById('inputNameUser').value;
 
   if (userName.trim() === '') {
-    alert('Si us plau, introdueix un nom');
-    return;
+    alert('Si us plau, introdueix un nom.');
+    return startGame();
   } else {
-    document.cookie = `userName=${userName}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
-    // localStorage.setItem('userName', userName);
-
-    let nameElement = document.getElementById('name');
-    nameElement.textContent = userName;
+    let cookieNom = userName;
+    document.cookie = cookieNom;
   }
-  ocultar();
-  mostrarAbc();
-  const palabraSeleccionada = mostrarPalabra();
-  comprovarLLetra(palabraSeleccionada);
-});
+}
 
 function ocultar() {
   document.getElementById('idForm').style.display = 'none';
@@ -68,88 +68,200 @@ function ocultar() {
   document.getElementById('P6').style.display = 'none';
 }
 
-function mostrarAbc() {
-  const abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  const caracteresSeparados = abc.split('');
-
-  const container = document.getElementById('containerLletras');
-
-  const abc1 = document.createElement('div');
-  abc1.className = 'abc1';
-
-  const abc2 = document.createElement('div');
-  abc2.className = 'abc2';
-
-  const abc3 = document.createElement('div');
-  abc3.className = 'abc3';
-
-  caracteresSeparados.forEach((caracter, i) => {
-    const aElement = document.createElement('a');
-    aElement.href = '#';
-    aElement.id = 'caracter-${caracter}';
-    aElement.textContent = caracter;
-
-    aElement.addEventListener('click', function () {
-      comprovarLLetra(caracter, palabraSeleccionada);
-    });
-
-    if (i < 10) {
-      abc1.appendChild(aElement);
-    } else if (i < 19) {
-      abc2.appendChild(aElement);
-    } else {
-      abc3.appendChild(aElement);
-    }
-  });
-
-  container.appendChild(abc1);
-  container.appendChild(abc2);
-  container.appendChild(abc3);
-}
-
 function mostrarPalabra() {
   const palabraSeleccionada = palabras[Math.floor(Math.random() * palabras.length)];
 
-  let temaElement = document.getElementById('tema');
-  temaElement.textContent = palabraSeleccionada.tematica;
 
-  const palabraDiv = document.getElementById('palabra');
-  palabraDiv.innerHTML = '';
 
-  for (let i = 0; i < palabraSeleccionada.nombre.length; i++) {
-    palabraDiv.innerHTML += '_ ';
-  }
-
-  return palabraSeleccionada;
+  
 }
 
-function comprovarLLetra(lletraClic, palabraSeleccionada) {
-  console.log('Lletra clicada: ${lletraClic}');
+// function mostrarAbc() {
+//   const abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+//   const caracteresSeparados = abc.split('');
 
-  const palabraDiv = document.getElementById('palabra');
-  const palabraCompleta = palabraSeleccionada.nombre;
+//   const container = document.getElementById('containerLletras');
 
-  let palabraActualizada = '';
-  let letraEncontrada = false;
+//   const abc1 = document.createElement('div');
+//   abc1.className = 'abc1';
 
-  for (let i = 0; i < palabraCompleta.length; i++) {
-    if (palabraCompleta[i] === lletraClic) {
-      palabraActualizada += lletraClic + ' ';
-      letraEncontrada = true;
-    }else{
-      palabraActualizada += '_ ';
-    }
-  }
+//   const abc2 = document.createElement('div');
+//   abc2.className = 'abc2';
 
-  palabraDiv.textContent = palabraActualizada.trim();
+//   const abc3 = document.createElement('div');
+//   abc3.className = 'abc3';
 
-  if (!letraEncontrada) {
-    document.getElementById(`caracter-${lletraClic}`).removeEventListener('click', null);
-    document.getElementById(`caracter-${lletraClic}`).style.pointerEvents = 'none';
-    document.getElementById(`caracter-${lletraClic}`).style.cursor = 'default';
-  }
-}
+//   caracteresSeparados.forEach((caracter, i) => {
+//     const aElement = document.createElement('a');
+//     aElement.href = '#';
+//     aElement.id = 'caracter-${caracter}';
+//     aElement.textContent = caracter;
 
+//     aElement.addEventListener('click', function () {
+//       comprovarLLetra(caracter, palabraSeleccionada);
+//     });
+
+//     if (i < 10) {
+//       abc1.appendChild(aElement);
+//     } else if (i < 19) {
+//       abc2.appendChild(aElement);
+//     } else {
+//       abc3.appendChild(aElement);
+//     }
+//   });
+
+//   container.appendChild(abc1);
+//   container.appendChild(abc2);
+//   container.appendChild(abc3);
+// }
+
+// function mostrarPalabra() {
+//   const palabraSeleccionada = palabras[Math.floor(Math.random() * palabras.length)];
+
+//   let temaElement = document.getElementById('tema');
+//   temaElement.textContent = palabraSeleccionada.tematica;
+
+//   const palabraDiv = document.getElementById('palabra');
+//   palabraDiv.innerHTML = '';
+
+//   for (let i = 0; i < palabraSeleccionada.nombre.length; i++) {
+//     palabraDiv.innerHTML += '_ ';
+//   }
+
+//   return palabraSeleccionada;
+// }
+
+// function comprovarLLetra(lletraClic, palabraSeleccionada) {
+//   console.log('Lletra clicada: ${lletraClic}');
+
+//   const palabraDiv = document.getElementById('palabra');
+//   const palabraCompleta = palabraSeleccionada.nombre;
+
+//   let palabraActualizada = '';
+//   let letraEncontrada = false;
+
+//   for (let i = 0; i < palabraCompleta.length; i++) {
+//     if (palabraCompleta[i] === lletraClic) {
+//       palabraActualizada += lletraClic + ' ';
+//       letraEncontrada = true;
+//     }else{
+//       palabraActualizada += '_ ';
+//     }
+//   }
+
+//   palabraDiv.textContent = palabraActualizada.trim();
+
+//   if (!letraEncontrada) {
+//     document.getElementById(`caracter-${lletraClic}`).removeEventListener('click', null);
+//     document.getElementById(`caracter-${lletraClic}`).style.pointerEvents = 'none';
+//     document.getElementById(`caracter-${lletraClic}`).style.cursor = 'default';
+//   }
+// }
+
+
+// document.getElementById('idForm').addEventListener('submit', function startGame(event) {
+//   event.preventDefault();
+//   validarNombre();
+//   mostrarPalabra();
+//   ocultar();
+//   mostrarAbc();
+// });
+
+
+
+// function mostrarPalabra() {
+//   const palabraSeleccionada = palabras[Math.floor(Math.random() * palabras.length)];
+//   const palabraSeparada = palabraSeleccionada.split(''); //palabraSeparada contiene la parabra fragmentada
+
+//   const palabraDiv = document.getElementById('palabra');
+//   palabraDiv.innerHTML = '';
+
+//   for (let i = 0; i < palabraSeparada.length; i++) {
+//     palabraDiv.innerHTML += '_ ';
+//   }
+// }
+
+// function ocultar() {
+//   document.getElementById('idForm').style.display = 'none';
+
+//   document.getElementById('P1').style.display = 'none';
+//   document.getElementById('P2').style.display = 'none';
+//   document.getElementById('P3').style.display = 'none';
+//   document.getElementById('P4').style.display = 'none';
+//   document.getElementById('P5').style.display = 'none';
+//   document.getElementById('P6').style.display = 'none';
+// }
+
+// function mostrarAbc() {
+//   const abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+//   const abcSeparado = abc.split('');
+
+//   const container = document.getElementById('containerLletras');
+
+//   const abc1 = document.createElement('div');
+//   abc1.className = 'abc1';
+
+//   const abc2 = document.createElement('div');
+//   abc2.className = 'abc2';
+
+//   const abc3 = document.createElement('div');
+//   abc3.className = 'abc3';
+
+//   abcSeparado.forEach((caracter, i) => {
+//     const aElement = document.createElement('a');
+//     aElement.href = '#';
+//     aElement.id = 'caracter-${caracter}';
+//     aElement.textContent = caracter;
+
+//     aElement.addEventListener('click', function () {
+//       comprovarLLetra(caracter, palabraSeleccionada);
+//     });
+
+//     if (i < 10) {
+//       abc1.appendChild(aElement);
+//     } else if (i < 19) {
+//       abc2.appendChild(aElement);
+//     } else {
+//       abc3.appendChild(aElement);
+//     }
+//   });
+
+//   container.appendChild(abc1);
+//   container.appendChild(abc2);
+//   container.appendChild(abc3);
+// }
+
+// function comprovarLLetra(lletraClic, palabraSeleccionada) {
+//   console.log('Lletra clicada: ${lletraClic}');
+
+
+
+
+//   const palabraDiv = document.getElementById('palabra');
+//   const palabraCompleta = palabraSeleccionada.nombre;
+
+//   let palabraActualizada = '';
+//   let letraEncontrada = false;
+
+//   for (let i = 0; i < palabraCompleta.length; i++) {
+
+
+//     if (palabraCompleta[i] === lletraClic) {
+//       palabraActualizada += lletraClic + ' ';
+//       letraEncontrada = true;
+//     }else{
+//       palabraActualizada += '_ ';
+//     }
+//   }
+
+//   palabraDiv.textContent = palabraActualizada.trim();
+
+//   if (!letraEncontrada) {
+//     document.getElementById(`caracter-${lletraClic}`).removeEventListener('click', null);
+//     document.getElementById(`caracter-${lletraClic}`).style.pointerEvents = 'none';
+//     document.getElementById(`caracter-${lletraClic}`).style.cursor = 'default';
+//   }
+// }
 
 /*
 function comprovarLletra();
