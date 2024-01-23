@@ -37,7 +37,7 @@ let palabras = [
   }
 ];
 
-document.addEventListener('submit', function startGame(event){
+document.addEventListener('submit', function startGame(event) {
   event.preventDefault();
 
   validarNombre();
@@ -70,11 +70,27 @@ function ocultar() {
 
 function mostrarPalabra() {
   const palabraSeleccionada = palabras[Math.floor(Math.random() * palabras.length)];
+  const arrayPalabra = palabraSeleccionada.split('');
 
+  const palabraDiv = document.getElementById('palabra');
+  palabraDiv.innerHTML = '';
 
-
-  
+  for (let i = 0; i < arrayPalabra.length; i++) {
+    palabraDiv.innerHTML += '_ ';
+  }
 }
+// function mostrarPalabra() {
+//   const palabraSeleccionada = palabras[Math.floor(Math.random() * palabras.length)];
+
+//   let temaElement = document.getElementById('tema');
+//   temaElement.textContent = palabraSeleccionada.tematica;
+
+//   for (let i = 0; i < palabraSeleccionada.nombre.length; i++) {
+//     palabraDiv.innerHTML += '_ ';
+//   }
+
+//   return palabraSeleccionada;
+// }
 
 // function mostrarAbc() {
 //   const abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -115,21 +131,7 @@ function mostrarPalabra() {
 //   container.appendChild(abc3);
 // }
 
-// function mostrarPalabra() {
-//   const palabraSeleccionada = palabras[Math.floor(Math.random() * palabras.length)];
 
-//   let temaElement = document.getElementById('tema');
-//   temaElement.textContent = palabraSeleccionada.tematica;
-
-//   const palabraDiv = document.getElementById('palabra');
-//   palabraDiv.innerHTML = '';
-
-//   for (let i = 0; i < palabraSeleccionada.nombre.length; i++) {
-//     palabraDiv.innerHTML += '_ ';
-//   }
-
-//   return palabraSeleccionada;
-// }
 
 // function comprovarLLetra(lletraClic, palabraSeleccionada) {
 //   console.log('Lletra clicada: ${lletraClic}');
