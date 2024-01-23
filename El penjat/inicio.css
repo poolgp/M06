@@ -115,6 +115,7 @@ body {
     font-size: 20px;
     margin-top: 10px;
     text-align: center;
+    
 }
 
 #titulo {
@@ -126,7 +127,6 @@ body {
 .contadorErrores {
     margin-top: 5px;
     display: flex;
-    flex-direction: column;
     align-items: center;
 }
 

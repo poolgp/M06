@@ -150,6 +150,7 @@ function comprovarLLetra(lletraClic, palabraSeleccionada) {
   }
 }
 
+
 /*
 function comprovarLletra();
 
