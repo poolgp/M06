@@ -40,12 +40,14 @@ let palabras = [
 const maxErrores = 6;
 let userName;
 let palabraSeleccionada;
+let lletresUtilitzades = [];
 let errores = 0;
 
 document.addEventListener('submit', function startGame(event) {
   event.preventDefault();
 
   validarNombre();
+  inicialitzarJoc();
   mostrarPalabra();
   ocultar();
   mostrarAbc();
@@ -129,9 +131,10 @@ function mostrarAbc() {
   container.appendChild(abc3);
 }
 
-function comprobarLetra(letra) {
+function comprobarLetra(event) {
+  const letra = event.target.textContent; // Obtener el contenido de la letra
   const letraElement = document.getElementById(`caracter-${letra}`);
-  letraElement.removeEventListener('click', bloquearLetra);
+  letraElement.removeEventListener('click', comprobarLetra);
 
   if (palabraSeleccionada.nombre.includes(letra)) {
     mostrarLetra(letra);
@@ -141,17 +144,18 @@ function comprobarLetra(letra) {
     comprobarErrores();
     errores++;
   }
+  desarEstataJoc();
 }
 
-function mostrarLetr(letra) {
+function mostrarLetra(letra) {
   for (let i = 0; i < arrayPalabra.length; i++) {
     if (arrayPalabra[i] === letra) {
       palabraDiv.childNodes[i * 2].textContent = letra;
     }
   }
 
-  if (palabraCompleta()) {
-    finJuego(win);
+  if (palabraCompleta() || errores === maxErrores) {
+    finJuego();
   }
 }
 
@@ -197,5 +201,43 @@ function comprobarErrores() {
     document.getElementById('P5').style.display = 'block';
     document.getElementById('P6').style.display = 'block';
     document.getElementById('P3').style.display = 'block';
+  }
+}
+
+function finJuego() {
+  const imgFinal = document.querySelector('.imgFinal');
+  const descripcionFinal = document.querySelector('.descripcionFinal');
+
+  imgFinal.src = palabraSeleccionada.imagen;
+  descripcionFinal.textContent = palabraSeleccionada.descripcion;
+
+  const resultadoContainer = document.getElementById('resultadoContainer');
+  resultadoContainer.style.display = 'block';
+
+  const letrasContainer = document.getElementById('letrasContainer');
+  letrasContainer.style.display = 'none';
+}
+
+function desarEstataJoc() {
+  const estatJoc = {
+    paraulaActual: palabraSeleccionada.nombre,
+    lletresUtilitzades: lletresUtilitzades,
+  };
+
+  localStorage.setItem('estatJoc', JSON.stringify(estatJoc));
+}
+
+function inicialitzarJoc() {
+  const estatDesat = localStorage.getItem('estatJoc');
+
+  if (estatDesat) {
+    const estatJocRecuperat = JSON.parse(estatDesat);
+
+    palabraSeleccionada = buscarParaulaPerNom(estatJocRecuperat.paraulaActual);
+    lletresUtilitzades = estatJocRecuperat.lletresUtilitzades;
+    mostrarPalabra();
+    mostrarLletresUtilitzades();
+  } else {
+    startGame();
   }
 }
