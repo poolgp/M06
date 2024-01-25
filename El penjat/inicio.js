@@ -1,25 +1,28 @@
-// let userName;
-// const maxErrores = 6;
-// let palabraSeleccionada;
-// let lletresUtilitzades = [];
-// let errores = 0;
+let palabraSeleccionada;
+let arrayPalabra;
+let palabraDiv;
+let abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+let abcSeparado;
+let letraClick;
 
 document.getElementById("idForm").addEventListener("submit", function startGame(event) {
   event.preventDefault();
 
   validarNombre();
   selectParaula();
-  // mostrarPalabra();
+  mostrarPalabra();
   mostrarTematica();
+  ocultar();
+  mostrarAbc();
 
   /*
   validar nombre ->
   mostrar nombre ->
   seleccionar palabra aleatoria ->
-  mostrar palabra aleatoria 
-  mostrar tema 
-  ocultar form e imagenes
-  mostrar abcdario
+  mostrar palabra aleatoria ->
+  mostrar tema ->
+  ocultar form e imagenes ->
+  mostrar abcdario ->
   
   comprobar errores
   fin juego(mostrar descriocion e imagen)
@@ -45,25 +48,105 @@ function mostrarNombre() {
 }
 
 function selectParaula() {
-  let palabraSeleccionada = palabras[Math.floor(Math.random() * palabras.length)]; // guarda el nom, la img, la descripcio i la tematica
-  let arrayPalabra = palabraSeleccionada.nombre.split('');
-
-  return arrayPalabra;
+  palabraSeleccionada = palabras[Math.floor(Math.random() * palabras.length)]; // guarda el nom, la img, la descripcio i la tematica
+  arrayPalabra = palabraSeleccionada.nombre.split('');
 }
 
-// function mostrarPalabra(arrayPalabra) {
-//   let palabraDiv = document.getElementById('palabra');
-//   palabraDiv.innerHTML = '';
+function mostrarPalabra() {
+  palabraDiv = document.getElementById('palabra');
+  palabraDiv.innerHTML = '';
 
-//   for (let i = 0; i < arrayPalabra.length; i++) {
-//     palabraDiv.innerHTML += '_ ';
-//   }
-// }
+  for (let i = 0; i < arrayPalabra.length; i++) {
+    palabraDiv.innerHTML += '_ ';
+  }
+}
 
-function mostrarTematica(palabraSeleccionada) {
-  let tematicaSpan = document.getElementById('tematica');
+function mostrarTematica() {
+  let tematicaSpan = document.getElementById('tema');
+  console.log(palabraSeleccionada.tematica);
   tematicaSpan.textContent = palabraSeleccionada.tematica;
 }
+
+function ocultar() {
+  document.getElementById('idForm').style.display = 'none';
+
+  const elementosOcultar = document.getElementsByClassName('ocultar');
+  for (let i = 0; i < elementosOcultar.length; i++) {
+    elementosOcultar[i].style.display = 'none';
+  }
+}
+
+function mostrarAbc() {
+  abcSeparado = abc.split('');
+
+  const container = document.getElementById('containerLletras');
+
+  const abc1 = document.createElement('div');
+  abc1.className = 'abc1';
+
+  const abc2 = document.createElement('div');
+  abc2.className = 'abc2';
+
+  const abc3 = document.createElement('div');
+  abc3.className = 'abc3';
+
+  abcSeparado.forEach((caracter, i) => {
+    const aElement = document.createElement('a');
+    aElement.href = '#';
+    aElement.id = `caracter-${caracter}`;
+    aElement.textContent = caracter;
+
+    aElement.onclick = function (event) {
+      comprobarLetra(event);
+      aElement.onclick = null; //desactivar la letra despues del click
+    };
+
+    // aElement.addEventListener('click', comprobarLetra);
+
+    if (i < 10) {
+      abc1.appendChild(aElement);
+    } else if (i < 19) {
+      abc2.appendChild(aElement);
+    } else {
+      abc3.appendChild(aElement);
+    }
+  });
+
+  container.appendChild(abc1);
+  container.appendChild(abc2);
+  container.appendChild(abc3);
+}
+function comprobarLetra(event) {
+  letraClick = event.target.textContent; //obtiene la letra clickada
+  let letraElement = document.getElementById(`caracter-${letraClick}`);
+
+  if (arrayPalabra.includes(letraClick)) {
+    mostrarLetra(letraClick);
+    letraElement.style.color = 'green';
+  } else {
+
+  }
+}
+
+function mostrarLetra(letraClick) {
+  for (let i = 0; i < arrayPalabra.length; i++) {
+    if (arrayPalabra[i] === letraClick) {
+      palabraDiv.childNodes[i * 2].textContent = letraClick;
+    }
+  }
+}
+
+// function mostrarLetra(letra) {
+//   for (let i = 0; i < arrayPalabra.length; i++) {
+//     if (arrayPalabra[i] === letra) {
+//       palabraDiv.childNodes[i * 2].textContent = letra;
+//     }
+//   }
+
+//   if (palabraCompleta() || errores === maxErrores) {
+//     finJuego();
+//   }
+// }
 
 let palabras = [
   {
@@ -103,80 +186,6 @@ let palabras = [
     tematica: "Vehicles de transport",
   }
 ];
-
-// let form = document.getElementById('idForm');
-
-// form.addEventListener('submit', function startGame(event) {
-//   event.preventDefault();
-
-//   inicialitzarJoc();
-//   validarNombre();
-//   mostrarPalabra();
-//   ocultar();
-//   mostrarAbc();
-// })
-
-// function mostrarPalabra() {
-//   palabraSeleccionada = palabras[Math.floor(Math.random() * palabras.length)];
-//   // localStorage.setItem(palabraSeleccionada);
-//   const arrayPalabra = palabraSeleccionada.nombre.split('');
-
-//   let palabraDiv = document.getElementById('palabra');
-//   palabraDiv.innerHTML = '';
-
-//   for (let i = 0; i < arrayPalabra.length; i++) {
-//     palabraDiv.innerHTML += '_ ';
-//   }
-
-//   let temaDiv = document.getElementById('tema');
-//   temaDiv.textContent = palabraSeleccionada.tematica;
-// }
-
-// function ocultar() {
-//   document.getElementById('idForm').style.display = 'none';
-
-//   const elementosOcultar = document.getElementsByClassName('ocultar');
-//   for (let i = 0; i < elementosOcultar.length; i++) {
-//     elementosOcultar[i].style.display = 'none';
-//   }
-// }
-
-// function mostrarAbc() {
-//   const abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-//   const caracteresSeparados = abc.split('');
-
-//   const container = document.getElementById('containerLletras');
-
-//   const abc1 = document.createElement('div');
-//   abc1.className = 'abc1';
-
-//   const abc2 = document.createElement('div');
-//   abc2.className = 'abc2';
-
-//   const abc3 = document.createElement('div');
-//   abc3.className = 'abc3';
-
-//   caracteresSeparados.forEach((caracter, i) => {
-//     const aElement = document.createElement('a');
-//    aElement.href = '#';
-//     aElement.id = `caracter-${caracter}`;
-//     aElement.textContent = caracter;
-
-//     aElement.addEventListener('click', comprobarLetra);
-
-//     if (i < 10) {
-//       abc1.appendChild(aElement);
-//     } else if (i < 19) {
-//       abc2.appendChild(aElement);
-//     } else {
-//       abc3.appendChild(aElement);
-//     }
-//   });
-
-//   container.appendChild(abc1);
-//   container.appendChild(abc2);
-//   container.appendChild(abc3);
-// }
 
 // function comprobarLetra(event) {
 //   const letra = event.target.textContent; // Obtener el contenido de la letra
