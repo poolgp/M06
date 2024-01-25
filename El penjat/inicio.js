@@ -1,3 +1,70 @@
+// let userName;
+// const maxErrores = 6;
+// let palabraSeleccionada;
+// let lletresUtilitzades = [];
+// let errores = 0;
+
+document.getElementById("idForm").addEventListener("submit", function startGame(event) {
+  event.preventDefault();
+
+  validarNombre();
+  selectParaula();
+  // mostrarPalabra();
+  mostrarTematica();
+
+  /*
+  validar nombre ->
+  mostrar nombre ->
+  seleccionar palabra aleatoria ->
+  mostrar palabra aleatoria 
+  mostrar tema 
+  ocultar form e imagenes
+  mostrar abcdario
+  
+  comprobar errores
+  fin juego(mostrar descriocion e imagen)
+  */
+})
+
+function validarNombre() {
+  let userName = document.getElementById('inputNameUser').value;
+
+  if (userName.trim() === '') {
+    alert('Si us plau, introdueix un nom.');
+    return;
+  } else {
+    localStorage.setItem('nombreUsuario', userName);
+    mostrarNombre();
+  }
+}
+
+function mostrarNombre() {
+  let nameStorage = localStorage.getItem('nombreUsuario');
+  let nameSpan = document.getElementById('name');
+  nameSpan.textContent = nameStorage;
+}
+
+function selectParaula() {
+  let palabraSeleccionada = palabras[Math.floor(Math.random() * palabras.length)]; // guarda el nom, la img, la descripcio i la tematica
+  let arrayPalabra = palabraSeleccionada.nombre.split('');
+
+  return arrayPalabra;
+}
+
+// function mostrarPalabra(arrayPalabra) {
+//   let palabraDiv = document.getElementById('palabra');
+//   palabraDiv.innerHTML = '';
+
+//   for (let i = 0; i < arrayPalabra.length; i++) {
+//     palabraDiv.innerHTML += '_ ';
+//   }
+// }
+
+function mostrarTematica(palabraSeleccionada) {
+  let tematicaSpan = document.getElementById('tematica');
+  tematicaSpan.textContent = palabraSeleccionada.tematica;
+}
+
 let palabras = [
   {
     nombre: "ESPANYA",
@@ -37,207 +104,187 @@ let palabras = [
   }
 ];
 
-const maxErrores = 6;
-let userName;
-let palabraSeleccionada;
-let lletresUtilitzades = [];
-let errores = 0;
+// let form = document.getElementById('idForm');
 
-document.addEventListener('submit', function startGame(event) {
-  event.preventDefault();
+// form.addEventListener('submit', function startGame(event) {
+//   event.preventDefault();
 
-  validarNombre();
-  inicialitzarJoc();
-  mostrarPalabra();
-  ocultar();
-  mostrarAbc();
-})
+//   inicialitzarJoc();
+//   validarNombre();
+//   mostrarPalabra();
+//   ocultar();
+//   mostrarAbc();
+// })
 
-function validarNombre() {
-  userName = document.getElementById('inputNameUser').value;
+// function mostrarPalabra() {
+//   palabraSeleccionada = palabras[Math.floor(Math.random() * palabras.length)];
+//   // localStorage.setItem(palabraSeleccionada);
+//   const arrayPalabra = palabraSeleccionada.nombre.split('');
 
-  if (userName.trim() === '') {
-    alert('Si us plau, introdueix un nom.');
-    return startGame();
-  } else {
-    localStorage.setItem('usuario', userName);
-    mostrarNombre();
-  }
-}
+//   let palabraDiv = document.getElementById('palabra');
+//   palabraDiv.innerHTML = '';
 
-function mostrarNombre() {
-  let nameElement = document.getElementById('name');
-  nameElement.textContent = userName;
-}
+//   for (let i = 0; i < arrayPalabra.length; i++) {
+//     palabraDiv.innerHTML += '_ ';
+//   }
 
-function mostrarPalabra() {
-  palabraSeleccionada = palabras[Math.floor(Math.random() * palabras.length)];
-  const arrayPalabra = palabraSeleccionada.nombre.split('');
+//   let temaDiv = document.getElementById('tema');
+//   temaDiv.textContent = palabraSeleccionada.tematica;
+// }
 
-  let palabraDiv = document.getElementById('palabra');
-  palabraDiv.innerHTML = '';
+// function ocultar() {
+//   document.getElementById('idForm').style.display = 'none';
 
-  for (let i = 0; i < arrayPalabra.length; i++) {
-    palabraDiv.innerHTML += '_';
-  }
+//   const elementosOcultar = document.getElementsByClassName('ocultar');
+//   for (let i = 0; i < elementosOcultar.length; i++) {
+//     elementosOcultar[i].style.display = 'none';
+//   }
+// }
 
-  let temaDiv = document.getElementById('tema');
-  temaDiv.textContent = palabraSeleccionada.tematica;
-}
+// function mostrarAbc() {
+//   const abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+//   const caracteresSeparados = abc.split('');
 
-function ocultar() {
-  document.getElementById('idForm').style.display = 'none';
+//   const container = document.getElementById('containerLletras');
 
-  const elementosOcultar = document.getElementsByClassName('ocultar');
-  for (let i = 0; i < elementosOcultar.length; i++) {
-    elementosOcultar[i].style.display = 'none';
-  }
-}
+//   const abc1 = document.createElement('div');
+//   abc1.className = 'abc1';
 
-function mostrarAbc() {
-  const abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  const caracteresSeparados = abc.split('');
+//   const abc2 = document.createElement('div');
+//   abc2.className = 'abc2';
 
-  const container = document.getElementById('containerLletras');
+//   const abc3 = document.createElement('div');
+//   abc3.className = 'abc3';
 
-  const abc1 = document.createElement('div');
-  abc1.className = 'abc1';
+//   caracteresSeparados.forEach((caracter, i) => {
+//     const aElement = document.createElement('a');
+//    aElement.href = '#';
+//     aElement.id = `caracter-${caracter}`;
+//     aElement.textContent = caracter;
 
-  const abc2 = document.createElement('div');
-  abc2.className = 'abc2';
+//     aElement.addEventListener('click', comprobarLetra);
 
-  const abc3 = document.createElement('div');
-  abc3.className = 'abc3';
+//     if (i < 10) {
+//       abc1.appendChild(aElement);
+//     } else if (i < 19) {
+//       abc2.appendChild(aElement);
+//     } else {
+//       abc3.appendChild(aElement);
+//     }
+//   });
 
-  caracteresSeparados.forEach((caracter, i) => {
-    const aElement = document.createElement('a');
-    aElement.href = '#';
-    aElement.id = `caracter-${caracter}`;
-    aElement.textContent = caracter;
+//   container.appendChild(abc1);
+//   container.appendChild(abc2);
+//   container.appendChild(abc3);
+// }
 
-    aElement.addEventListener('click', comprobarLetra);
+// function comprobarLetra(event) {
+//   const letra = event.target.textContent; // Obtener el contenido de la letra
+//   const letraElement = document.getElementById(`caracter-${letra}`);
+//   letraElement.removeEventListener('click', comprobarLetra);
 
-    if (i < 10) {
-      abc1.appendChild(aElement);
-    } else if (i < 19) {
-      abc2.appendChild(aElement);
-    } else {
-      abc3.appendChild(aElement);
-    }
-  });
+//   if (palabraSeleccionada.nombre.includes(letra)) {
+//     mostrarLetra(letra);
+//     letraElement.style.color = 'green';
+//   } else {
+//     let contadorErrores = parseInt(document.getElementById("score").textContent);
+//     document.getElementById("score").textContent = contadorErrores + 1;
+//     comprobarErrores();
+//     // errores++;
+//     letraElement.style.color = 'red';
+//   }
+//   desarEstataJoc();
+// }
 
-  container.appendChild(abc1);
-  container.appendChild(abc2);
-  container.appendChild(abc3);
-}
+// function mostrarLetra(letra) {
+//   for (let i = 0; i < arrayPalabra.length; i++) {
+//     if (arrayPalabra[i] === letra) {
+//       palabraDiv.childNodes[i * 2].textContent = letra;
+//     }
+//   }
 
-function comprobarLetra(event) {
-  const letra = event.target.textContent; // Obtener el contenido de la letra
-  const letraElement = document.getElementById(`caracter-${letra}`);
-  letraElement.removeEventListener('click', comprobarLetra);
+//   if (palabraCompleta() || errores === maxErrores) {
+//     finJuego();
+//   }
+// }
 
-  if (palabraSeleccionada.nombre.includes(letra)) {
-    mostrarLetra(letra);
-    letraElement.style.color = 'green';
-  } else {
-    letraElement.style.color = 'red';
-    comprobarErrores();
-    errores++;
-  }
-  desarEstataJoc();
-}
+// function palabraCompleta() {
+//   const palabraDiv = document.getElementById('palabra');
+//   const letrasMostradas = palabraDiv.textContent.split(' ');
 
-function mostrarLetra(letra) {
-  for (let i = 0; i < arrayPalabra.length; i++) {
-    if (arrayPalabra[i] === letra) {
-      palabraDiv.childNodes[i * 2].textContent = letra;
-    }
-  }
+//   for (let i = 0; i < letrasMostradas.length; i++) {
+//     if (letrasMostradas[i] === '_') {
+//       return false;
+//     }
+//   }
 
-  if (palabraCompleta() || errores === maxErrores) {
-    finJuego();
-  }
-}
+//   return true;
+// }
 
-function palabraCompleta() {
-  const palabraDiv = document.getElementById('palabra');
-  const letrasMostradas = palabraDiv.textContent.split(' ');
+// function comprobarErrores() {
+//   if (contadorErrores === 1) {
+//     document.getElementById('P1').style.display = 'block';
+//   } else if (contadorErrores === 2) {
+//     document.getElementById('P1').style.display = 'block';
+//     document.getElementById('P2').style.display = 'block';
+//   } else if (contadorErrores === 3) {
+//     document.getElementById('P1').style.display = 'block';
+//     document.getElementById('P2').style.display = 'block';
+//     document.getElementById('P3').style.display = 'block';
+//   } else if (contadorErrores === 4) {
+//     document.getElementById('P1').style.display = 'block';
+//     document.getElementById('P2').style.display = 'block';
+//     document.getElementById('P3').style.display = 'block';
+//     document.getElementById('P4').style.display = 'block';
+//   } else if (contadorErrores === 5) {
+//     document.getElementById('P1').style.display = 'block';
+//     document.getElementById('P2').style.display = 'block';
+//     document.getElementById('P3').style.display = 'block';
+//     document.getElementById('P4').style.display = 'block';
+//     document.getElementById('P5').style.display = 'block';
+//   } else if (contadorErrores === 6) {
+//     document.getElementById('P1').style.display = 'block';
+//     document.getElementById('P2').style.display = 'block';
+//     document.getElementById('P3').style.display = 'block';
+//     document.getElementById('P4').style.display = 'block';
+//     document.getElementById('P5').style.display = 'block';
+//     document.getElementById('P6').style.display = 'block';
+//     document.getElementById('P3').style.display = 'block';
+//   }
+// }
 
-  for (let i = 0; i < letrasMostradas.length; i++) {
-    if (letrasMostradas[i] === '_') {
-      return false;
-    }
-  }
+// function finJuego() {
+//   const imgFinal = document.querySelector('.imgFinal');
+//   const descripcionFinal = document.querySelector('.descripcionFinal');
 
-  return true;
-}
+//   imgFinal.src = palabraSeleccionada.imagen;
+//   descripcionFinal.textContent = palabraSeleccionada.descripcion;
 
-function comprobarErrores() {
-  if (errores === 1) {
-    document.getElementById('P1').style.display = 'block';
-  } else if (errores === 2) {
-    document.getElementById('P1').style.display = 'block';
-    document.getElementById('P2').style.display = 'block';
-  } else if (errores === 3) {
-    document.getElementById('P1').style.display = 'block';
-    document.getElementById('P2').style.display = 'block';
-    document.getElementById('P3').style.display = 'block';
-  } else if (errores === 4) {
-    document.getElementById('P1').style.display = 'block';
-    document.getElementById('P2').style.display = 'block';
-    document.getElementById('P3').style.display = 'block';
-    document.getElementById('P4').style.display = 'block';
-  } else if (errores === 5) {
-    document.getElementById('P1').style.display = 'block';
-    document.getElementById('P2').style.display = 'block';
-    document.getElementById('P3').style.display = 'block';
-    document.getElementById('P4').style.display = 'block';
-    document.getElementById('P5').style.display = 'block';
-  } else if (errores === 6) {
-    document.getElementById('P1').style.display = 'block';
-    document.getElementById('P2').style.display = 'block';
-    document.getElementById('P3').style.display = 'block';
-    document.getElementById('P4').style.display = 'block';
-    document.getElementById('P5').style.display = 'block';
-    document.getElementById('P6').style.display = 'block';
-    document.getElementById('P3').style.display = 'block';
-  }
-}
+//   const resultadoContainer = document.getElementById('resultadoContainer');
+//   resultadoContainer.style.display = 'block';
 
-function finJuego() {
-  const imgFinal = document.querySelector('.imgFinal');
-  const descripcionFinal = document.querySelector('.descripcionFinal');
+//   const letrasContainer = document.getElementById('letrasContainer');
+//   letrasContainer.style.display = 'none';
+// }
 
-  imgFinal.src = palabraSeleccionada.imagen;
-  descripcionFinal.textContent = palabraSeleccionada.descripcion;
+// function desarEstataJoc() {
+//   const estatJoc = {
+//     paraulaActual: palabraSeleccionada.nombre,
+//     lletresUtilitzades: lletresUtilitzades,
+//   };
 
-  const resultadoContainer = document.getElementById('resultadoContainer');
-  resultadoContainer.style.display = 'block';
+//   localStorage.setItem('estatJoc', JSON.stringify(estatJoc));
+// }
 
-  const letrasContainer = document.getElementById('letrasContainer');
-  letrasContainer.style.display = 'none';
-}
+// function inicialitzarJoc() {
+//   const estatDesat = localStorage.getItem('estatJoc');
 
-function desarEstataJoc() {
-  const estatJoc = {
-    paraulaActual: palabraSeleccionada.nombre,
-    lletresUtilitzades: lletresUtilitzades,
-  };
+//   if (estatDesat) {
+//     const estatJocRecuperat = JSON.parse(estatDesat);
 
-  localStorage.setItem('estatJoc', JSON.stringify(estatJoc));
-}
-
-function inicialitzarJoc() {
-  const estatDesat = localStorage.getItem('estatJoc');
-
-  if (estatDesat) {
-    const estatJocRecuperat = JSON.parse(estatDesat);
-
-    palabraSeleccionada = buscarParaulaPerNom(estatJocRecuperat.paraulaActual);
-    lletresUtilitzades = estatJocRecuperat.lletresUtilitzades;
-    mostrarPalabra();
-    mostrarLletresUtilitzades();
-  } else {
-    startGame();
-  }
-}
+//     //palabraSeleccionada = buscarParaulaPerNom(estatJocRecuperat.paraulaActual);
+//     lletresUtilitzades = estatJocRecuperat.lletresUtilitzades;
+//     mostrarPalabrastorage();
+//     mostrarLletresUtilitzades();
+//   }
+// }
