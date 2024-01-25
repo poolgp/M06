@@ -147,29 +147,37 @@ function mostrarLetra(letraClick) {
 // function palabraCompleta() {
 
 // }
+// function ocultar() {
+//   document.getElementById('idForm').style.display = 'none';
+
+//   const elementosOcultar = document.getElementsByClassName('ocultar');
+//   for (let i = 0; i < elementosOcultar.length; i++) {
+//     elementosOcultar[i].style.display = 'none';
+//   }
+// }
 
 function comprobarErrores() {
-  if (numErrores == 1) {
+  if (numErrores === 1) {
     document.getElementById('P1').style.display = 'block';
-  } else if (numErrores == 2) {
+  } else if (numErrores === 2) {
     document.getElementById('P1').style.display = 'block';
     document.getElementById('P2').style.display = 'block';
-  } else if (numErrores == 3) {
+  } else if (numErrores === 3) {
     document.getElementById('P1').style.display = 'block';
     document.getElementById('P2').style.display = 'block';
     document.getElementById('P3').style.display = 'block';
-  } else if (numErrores == 4) {
+  } else if (numErrores === 4) {
     document.getElementById('P1').style.display = 'block';
     document.getElementById('P2').style.display = 'block';
     document.getElementById('P3').style.display = 'block';
     document.getElementById('P4').style.display = 'block';
-  } else if (numErrores == 5) {
+  } else if (numErrores === 5) {
     document.getElementById('P1').style.display = 'block';
     document.getElementById('P2').style.display = 'block';
     document.getElementById('P3').style.display = 'block';
     document.getElementById('P4').style.display = 'block';
     document.getElementById('P5').style.display = 'block';
-  } else if (numErrores == 6) {
+  } else if (numErrores === 6) {
     document.getElementById('P1').style.display = 'block';
     document.getElementById('P2').style.display = 'block';
     document.getElementById('P3').style.display = 'block';
