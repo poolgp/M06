@@ -273,38 +273,6 @@ let palabras = [
 //   return true;
 // }
 
-// function comprobarErrores() {
-//   if (numErrores === 1) {
-//     document.getElementById('P1').style.display = 'block';
-//   } else if (numErrores === 2) {
-//     document.getElementById('P1').style.display = 'block';
-//     document.getElementById('P2').style.display = 'block';
-//   } else if (numErrores === 3) {
-//     document.getElementById('P1').style.display = 'block';
-//     document.getElementById('P2').style.display = 'block';
-//     document.getElementById('P3').style.display = 'block';
-//   } else if (numErrores === 4) {
-//     document.getElementById('P1').style.display = 'block';
-//     document.getElementById('P2').style.display = 'block';
-//     document.getElementById('P3').style.display = 'block';
-//     document.getElementById('P4').style.display = 'block';
-//   } else if (numErrores === 5) {
-//     document.getElementById('P1').style.display = 'block';
-//     document.getElementById('P2').style.display = 'block';
-//     document.getElementById('P3').style.display = 'block';
-//     document.getElementById('P4').style.display = 'block';
-//     document.getElementById('P5').style.display = 'block';
-//   } else if (numErrores === 6) {
-//     document.getElementById('P1').style.display = 'block';
-//     document.getElementById('P2').style.display = 'block';
-//     document.getElementById('P3').style.display = 'block';
-//     document.getElementById('P4').style.display = 'block';
-//     document.getElementById('P5').style.display = 'block';
-//     document.getElementById('P6').style.display = 'block';
-//     document.getElementById('P3').style.display = 'block';
-//   }
-// }
-
 // function finJuego() {
 //   const imgFinal = document.querySelector('.imgFinal');
 //   const descripcionFinal = document.querySelector('.descripcionFinal');
