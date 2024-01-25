@@ -4,6 +4,8 @@ let palabraDiv;
 let abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 let abcSeparado;
 let letraClick;
+const MAXERRORES = 6;
+let numErrores = 0;
 
 document.getElementById("idForm").addEventListener("submit", function startGame(event) {
   event.preventDefault();
@@ -57,7 +59,8 @@ function mostrarPalabra() {
   palabraDiv.innerHTML = '';
 
   for (let i = 0; i < arrayPalabra.length; i++) {
-    palabraDiv.innerHTML += '_ ';
+    let letraNode = document.createTextNode('_ ');
+    palabraDiv.appendChild(letraNode);
   }
 }
 
@@ -116,6 +119,7 @@ function mostrarAbc() {
   container.appendChild(abc2);
   container.appendChild(abc3);
 }
+
 function comprobarLetra(event) {
   letraClick = event.target.textContent; //obtiene la letra clickada
   let letraElement = document.getElementById(`caracter-${letraClick}`);
@@ -124,15 +128,54 @@ function comprobarLetra(event) {
     mostrarLetra(letraClick);
     letraElement.style.color = 'green';
   } else {
-
+    numErrores++;
+    comprobarErrores();
+    letraElement.style.color = 'red';
   }
 }
 
 function mostrarLetra(letraClick) {
   for (let i = 0; i < arrayPalabra.length; i++) {
     if (arrayPalabra[i] === letraClick) {
-      palabraDiv.childNodes[i * 2].textContent = letraClick;
+      let indiceNodo = i;
+      palabraDiv.childNodes[indiceNodo].textContent = letraClick;
     }
+    //palabra completa()
+  }
+}
+
+// function palabraCompleta() {
+
+// }
+
+function comprobarErrores() {
+  if (numErrores == 1) {
+    document.getElementById('P1').style.display = 'block';
+  } else if (numErrores == 2) {
+    document.getElementById('P1').style.display = 'block';
+    document.getElementById('P2').style.display = 'block';
+  } else if (numErrores == 3) {
+    document.getElementById('P1').style.display = 'block';
+    document.getElementById('P2').style.display = 'block';
+    document.getElementById('P3').style.display = 'block';
+  } else if (numErrores == 4) {
+    document.getElementById('P1').style.display = 'block';
+    document.getElementById('P2').style.display = 'block';
+    document.getElementById('P3').style.display = 'block';
+    document.getElementById('P4').style.display = 'block';
+  } else if (numErrores == 5) {
+    document.getElementById('P1').style.display = 'block';
+    document.getElementById('P2').style.display = 'block';
+    document.getElementById('P3').style.display = 'block';
+    document.getElementById('P4').style.display = 'block';
+    document.getElementById('P5').style.display = 'block';
+  } else if (numErrores == 6) {
+    document.getElementById('P1').style.display = 'block';
+    document.getElementById('P2').style.display = 'block';
+    document.getElementById('P3').style.display = 'block';
+    document.getElementById('P4').style.display = 'block';
+    document.getElementById('P5').style.display = 'block';
+    document.getElementById('P6').style.display = 'block';
   }
 }
 
@@ -196,8 +239,8 @@ let palabras = [
 //     mostrarLetra(letra);
 //     letraElement.style.color = 'green';
 //   } else {
-//     let contadorErrores = parseInt(document.getElementById("score").textContent);
-//     document.getElementById("score").textContent = contadorErrores + 1;
+//     let numErrores = parseInt(document.getElementById("score").textContent);
+//     document.getElementById("score").textContent = numErrores + 1;
 //     comprobarErrores();
 //     // errores++;
 //     letraElement.style.color = 'red';
@@ -231,27 +274,27 @@ let palabras = [
 // }
 
 // function comprobarErrores() {
-//   if (contadorErrores === 1) {
+//   if (numErrores === 1) {
 //     document.getElementById('P1').style.display = 'block';
-//   } else if (contadorErrores === 2) {
+//   } else if (numErrores === 2) {
 //     document.getElementById('P1').style.display = 'block';
 //     document.getElementById('P2').style.display = 'block';
-//   } else if (contadorErrores === 3) {
+//   } else if (numErrores === 3) {
 //     document.getElementById('P1').style.display = 'block';
 //     document.getElementById('P2').style.display = 'block';
 //     document.getElementById('P3').style.display = 'block';
-//   } else if (contadorErrores === 4) {
+//   } else if (numErrores === 4) {
 //     document.getElementById('P1').style.display = 'block';
 //     document.getElementById('P2').style.display = 'block';
 //     document.getElementById('P3').style.display = 'block';
 //     document.getElementById('P4').style.display = 'block';
-//   } else if (contadorErrores === 5) {
+//   } else if (numErrores === 5) {
 //     document.getElementById('P1').style.display = 'block';
 //     document.getElementById('P2').style.display = 'block';
 //     document.getElementById('P3').style.display = 'block';
 //     document.getElementById('P4').style.display = 'block';
 //     document.getElementById('P5').style.display = 'block';
-//   } else if (contadorErrores === 6) {
+//   } else if (numErrores === 6) {
 //     document.getElementById('P1').style.display = 'block';
 //     document.getElementById('P2').style.display = 'block';
 //     document.getElementById('P3').style.display = 'block';
