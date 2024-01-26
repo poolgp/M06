@@ -147,14 +147,6 @@ function mostrarLetra(letraClick) {
 // function palabraCompleta() {
 
 // }
-// function ocultar() {
-//   document.getElementById('idForm').style.display = 'none';
-
-//   const elementosOcultar = document.getElementsByClassName('ocultar');
-//   for (let i = 0; i < elementosOcultar.length; i++) {
-//     elementosOcultar[i].style.display = 'none';
-//   }
-// }
 
 function comprobarErrores() {
   if (numErrores === 1) {
