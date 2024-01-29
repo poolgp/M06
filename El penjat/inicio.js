@@ -101,7 +101,7 @@ function mostrarAbc() {
 
     aElement.onclick = function (event) {
       comprobarLetra(event);
-      aElement.onclick = null; //desactivar la letra despues del click
+      aElement.onclick = null;
     };
 
     // aElement.addEventListener('click', comprobarLetra);
