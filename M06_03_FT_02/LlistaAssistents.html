@@ -6,21 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registre d'assistents</title>
     <script>
+        let asistents = [];
         // Funció per afegir un nom a la llista de cookies
         function afegirAssistent() {
             // Obté el valor del camp de text amb l'id "nomAssistent"
             let nomAssistent = document.getElementById("nomAssistent").value;
+            let anyNaixement = document.getElementById("anyNaixement").value;
+            let localitatProcedencia = document.getElementById("localitatProcedencia").value;
 
             // Comprova si el nom no és buit abans d'afegir-lo a la llista
-            if (nomAssistent.trim() !== "") {
+            if (nomAssistent.trim() !== "" || anyNaixement.trim() !== "" || localitatProcedencia.trim() !== "") {
                 // Obté la llista de noms emmagatzemats a la cookie (si existeix)
                 let llistaNoms = document.cookie.replace(/(?:(?:^|.*;\s*)llistaNoms\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 
                 // Converteix la llista de noms a un array
                 let nomsArray = llistaNoms ? llistaNoms.split(",") : [];
 
+                let asistent = {
+                    nom: nomAssistent,
+                    anyNaixement: anyNaixement,
+                    localitatProcedencia: localitatProcedencia
+                };
+
                 // Afegix el nou nom a l'array
-                nomsArray.push(nomAssistent);
+                nomsArray.push(asistent);
 
                 // Converteix l'array de noms a una cadena separada per comes i emmagatzema a la cookie
                 document.cookie = "llistaNoms=" + nomsArray.join(", ");
@@ -46,7 +55,7 @@
             // Construeix la llista com una cadena HTML
             let llistaHTML = "<ul>";
             for (let i = 0; i < nomsArray.length; i++) {
-                llistaHTML += "<li>" + nomsArray[i] + "</li>";
+                llistaHTML += "<li>" + nomsArray.nom + ", " + nomsArray.anyNaixement + ", " + nomAssistent.localitatProcedencia + "</li>";
             }
             llistaHTML += "</ul>";
 
@@ -77,4 +86,3 @@
 </body>
 
 </html>
-
